@@ -35,6 +35,7 @@ run: init build ## Run demucs to split the specified track in the input folder
 		-v $(current-dir)input:/data/input \
 		-v $(current-dir)output:/data/output \
 		-v $(current-dir)models:/data/models \
+		-u $(shell id -u):$(shell id -g) \
 		xserrat/facebook-demucs:latest \
 		"python3 -m demucs -n $(model) \
 			--out /data/output \
@@ -51,6 +52,7 @@ run-interactive: init build ## Run the docker container interactively to experim
 		-v $(current-dir)input:/data/input \
 		-v $(current-dir)output:/data/output \
 		-v $(current-dir)models:/data/models \
+		-u $(shell id -u):$(shell id -g) \
 		xserrat/facebook-demucs:latest \
 		/bin/bash
 
